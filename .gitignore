@@ -16,9 +16,9 @@ venv.bak/
 *.sqlite3
 
 # Docker
-Dockerfile
-docker-compose.yml
-.dockerignore
+# Dockerfile
+# docker-compose.yml
+# .dockerignore
 *.env
 
 # VS Code

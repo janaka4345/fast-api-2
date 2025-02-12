@@ -1,0 +1,14 @@
+services:
+  governa-ai-api:
+    container_name: governa-ai-api
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+
+
