@@ -1,6 +1,5 @@
 services:
   governa-ai-api:
-    container_name: governa-ai-api
     restart: always
     build:
       context: .
@@ -9,6 +8,25 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    networks:
+      - ollama-network
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - ollama
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - ollama-network
+
+volumes:
+  ollama_data:
+
+networks:
+  ollama-network:
+    driver: bridge
 
 
 
