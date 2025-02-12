@@ -67,7 +67,7 @@ async def list_users():
 @app.get("/ask_ai")
 async def ask_ai():
     print(os.getenv("OLLAMA_BASE_URL", "lllllllllllllllll"))
-    ollama_url = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
+    ollama_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     llm = OllamaLLM(model="llama3.2", base_url=ollama_url, temperature=0.7)
 
     res = llm.invoke("hi how are you")
