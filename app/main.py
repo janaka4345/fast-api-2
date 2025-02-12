@@ -73,3 +73,9 @@ async def ask_ai():
     res = llm.invoke("hi how are you")
 
     return res
+
+
+@app.get("/res")
+async def res():
+    res = os.getenv("OLLAMA_BASE_URL", "lllllllllllllllll")
+    return res
