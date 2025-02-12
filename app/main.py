@@ -1,20 +1,16 @@
-from typing import Union
+from typing import Union, List
+from pydantic import BaseModel
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 from enum import Enum
 
 app = FastAPI()
 
-class Item(BaseModel):
+class UserOut(BaseModel):
+    user_id: int
     name: str
-    price: float
-    is_offer: Union[bool, None] = None
-    
-class User(BaseModel):
-    user_id:int
-    name:str
-    email:str
+    email: str
+
 
 class DocumentEnum(str,Enum):
     policy="Policy"
@@ -38,11 +34,12 @@ async def read_root():
 async def read_item(item_id: int, q: Union[str, None] = None,h: Union[str, None] = None):
     return {"item_id": item_id, "q": q,"h":h}
   
-@app.put("/items/{item_id}")
-async def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
+# @app.put("/items/{item_id}")
+# async def update_item(item_id: int, item: Item):
+#     return {"item_name": item.name, "item_id": item_id}
 
-@app.get('/user/{user_id}')
+@app.get('/user/{user_id}', response_model=UserOut)
+@app.get('/user/{user_id}',response_model=List[UserOut])
 async def get_user(user_id:int):
     user = {"user_id": user_id, "name": "John Doe", "email": "johndoe@example.com"}
     return user
