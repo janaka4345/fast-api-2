@@ -21,7 +21,7 @@ services:
       - ollama_data:/root/.ollama
     networks:
       - ollama-network
-    command: ollama run llama3.2
+    command: run llama3.2
 
 volumes:
   ollama_data:
